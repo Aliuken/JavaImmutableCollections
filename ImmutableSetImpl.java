@@ -10,19 +10,25 @@ public final class ImmutableSetImpl<E> extends AbstractImmutableSet<E> implement
 
     public ImmutableSetImpl(SetType setType, Collection<? extends E> elements) {
         Objects.requireNonNull(setType, "null setType not allowed");
-        this.setType = setType;
         switch(setType) {
-            case HASH_SET:
+            case HASH_SET -> {
+                this.setType = setType;
                 this.set = new HashSet<>(elements);
-                break;
-            case LINKED_HASH_SET:
+            }
+
+            case LINKED_HASH_SET -> {
+                this.setType = setType;
                 this.set = new LinkedHashSet<>(elements);
-                break;
-            case TREE_SET:
+            }
+
+            case TREE_SET -> {
+                this.setType = setType;
                 this.set = new TreeSet<>(elements);
-                break;
-            default:
+            }
+
+            default -> {
                 throw new IllegalArgumentException("invalid setType: " + setType);
+            }
         }
     }
 

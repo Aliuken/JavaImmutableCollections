@@ -10,16 +10,20 @@ public final class ImmutableListImpl<E> extends AbstractImmutableList<E> impleme
 
     public ImmutableListImpl(ListType listType, Collection<? extends E> elements) {
         Objects.requireNonNull(listType, "null listType not allowed");
-        this.listType = listType;
         switch(listType) {
-            case ARRAY_LIST:
+            case ARRAY_LIST -> {
+                this.listType = listType;
                 this.list = new ArrayList<>(elements);
-                break;
-            case LINKED_LIST:
+            }
+
+            case LINKED_LIST -> {
+                this.listType = listType;
                 this.list = new LinkedList<>(elements);
-                break;
-            default:
+            }
+
+            default -> {
                 throw new IllegalArgumentException("invalid listType: " + listType);
+            }
         }
     }
 

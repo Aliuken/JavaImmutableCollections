@@ -9,19 +9,25 @@ public final class ImmutableMapImpl<K, V> extends AbstractImmutableMap<K,V> impl
 
     public ImmutableMapImpl(MapType mapType, Map<? extends K,? extends V> entries) {
         Objects.requireNonNull(mapType, "null mapType not allowed");
-        this.mapType = mapType;
         switch(mapType) {
-            case HASH_MAP:
+            case HASH_MAP -> {
+                this.mapType = mapType;
                 this.map = new HashMap<>(entries);
-                break;
-            case LINKED_HASH_MAP:
+            }
+
+            case LINKED_HASH_MAP -> {
+                this.mapType = mapType;
                 this.map = new LinkedHashMap<>(entries);
-                break;
-            case TREE_MAP:
+            }
+
+            case TREE_MAP -> {
+                this.mapType = mapType;
                 this.map = new TreeMap<>(entries);
-                break;
-            default:
+            }
+
+            default -> {
                 throw new IllegalArgumentException("invalid mapType: " + mapType);
+            }
         }
     }
 

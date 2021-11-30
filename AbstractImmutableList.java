@@ -1,6 +1,9 @@
 package myjava.util;
 
-import java.util.*;
+import java.util.ConcurrentModificationException;
+import java.util.List;
+import java.util.NoSuchElementException;
+import java.util.Objects;
 
 public abstract sealed class AbstractImmutableList<E> extends AbstractImmutableCollection<E> implements ImmutableList<E> permits AbstractImmutableList.SubList, ImmutableListImpl {
     protected AbstractImmutableList() {

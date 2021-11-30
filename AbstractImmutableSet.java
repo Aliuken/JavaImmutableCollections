@@ -1,9 +1,9 @@
 package myjava.util;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Set;
 
 public abstract sealed class AbstractImmutableSet<E> extends AbstractImmutableCollection<E> implements ImmutableSet<E> permits AbstractNonSealedImmutableSet, ImmutableSetImpl {
-
     protected AbstractImmutableSet() {
     }
 

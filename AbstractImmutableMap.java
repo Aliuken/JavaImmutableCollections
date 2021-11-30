@@ -1,6 +1,6 @@
 package myjava.util;
 
-import java.util.*;
+import java.util.Map;
 
 public abstract sealed class AbstractImmutableMap<K,V> implements ImmutableMap<K,V> permits ImmutableMapImpl {
     protected AbstractImmutableMap() {

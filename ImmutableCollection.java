@@ -26,6 +26,19 @@ public sealed interface ImmutableCollection<E> extends ImmutableIterable<E> perm
     boolean equals(Object o);
     int hashCode();
 
+    private Spliterator<E> spliterator() {
+        Collection<E> collection = this.toCollection();
+        return Spliterators.spliterator(collection, 0);
+    }
+
+    default Stream<E> stream() {
+        return StreamSupport.stream(spliterator(), false);
+    }
+
+    default Stream<E> parallelStream() {
+        return StreamSupport.stream(spliterator(), true);
+    }
+
     default Collection<E> toCollection() {
         ImmutableIterator<E> iterator = this.iterator();
 
@@ -82,18 +95,5 @@ public sealed interface ImmutableCollection<E> extends ImmutableIterable<E> perm
         }
 
         return collection;
-    }
-
-    private Spliterator<E> spliterator() {
-        Collection<E> collection = this.toCollection();
-        return Spliterators.spliterator(collection, 0);
-    }
-
-    default Stream<E> stream() {
-        return StreamSupport.stream(spliterator(), false);
-    }
-
-    default Stream<E> parallelStream() {
-        return StreamSupport.stream(spliterator(), true);
     }
 }
